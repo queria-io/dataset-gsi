@@ -1,0 +1,159 @@
+version: 2
+
+_meta: &meta
+  source_url: "https://www.gsi.go.jp/bousaichiri/hinanbasho.html"
+  published: true
+  tags: ["防災", "避難場所", "避難所", "GIS", "国土地理院"]
+
+models:
+  - name: emergency_evacuation_site
+    description: |
+      全国の指定緊急避難場所（災害対策基本法第49条の4）の位置（ポイント）。
+      市区町村が災害種別ごとに指定した、切迫した災害の危険から命を守るために避難する場所。
+      「指定緊急避難場所データ」（国土地理院）（https://hinanmap.gsi.go.jp/）を加工して作成。
+      緯度・経度が欠損する行は除外している。
+    access: public
+    config:
+      meta:
+        <<: *meta
+        title: "指定緊急避難場所"
+    columns:
+      - name: site_id
+        data_type: varchar
+        meta:
+          title: 共通ID
+          description: 市区町村コードを含む指定緊急避難場所の共通ID
+      - name: muni_name
+        data_type: varchar
+        meta:
+          title: 都道府県名及び市町村名
+      - name: site_name
+        data_type: varchar
+        meta:
+          title: 施設・場所名
+      - name: address
+        data_type: varchar
+        meta:
+          title: 住所
+      - name: for_flood
+        data_type: boolean
+        meta:
+          title: 洪水
+          description: 洪水に対応する指定緊急避難場所
+      - name: for_landslide
+        data_type: boolean
+        meta:
+          title: 崖崩れ・土石流・地滑り
+          description: 崖崩れ、土石流及び地滑りに対応する指定緊急避難場所
+      - name: for_storm_surge
+        data_type: boolean
+        meta:
+          title: 高潮
+          description: 高潮に対応する指定緊急避難場所
+      - name: for_earthquake
+        data_type: boolean
+        meta:
+          title: 地震
+          description: 地震に対応する指定緊急避難場所
+      - name: for_tsunami
+        data_type: boolean
+        meta:
+          title: 津波
+          description: 津波に対応する指定緊急避難場所
+      - name: for_large_fire
+        data_type: boolean
+        meta:
+          title: 大規模な火事
+          description: 大規模な火事に対応する指定緊急避難場所
+      - name: for_inland_flooding
+        data_type: boolean
+        meta:
+          title: 内水氾濫
+          description: 内水氾濫に対応する指定緊急避難場所
+      - name: for_volcano
+        data_type: boolean
+        meta:
+          title: 火山現象
+          description: 火山現象に対応する指定緊急避難場所
+      - name: same_address_as_shelter
+        data_type: boolean
+        meta:
+          title: 指定避難所との住所同一
+          description: 同一住所の指定避難所が存在する場合 TRUE
+      - name: latitude
+        data_type: double
+        meta:
+          title: 緯度
+      - name: longitude
+        data_type: double
+        meta:
+          title: 経度
+      - name: geometry
+        data_type: geometry
+        meta:
+          title: 避難場所ポイント
+          description: "経度・緯度から生成したポイント (CRS: EPSG:6668 / JGD2011)"
+      - name: note
+        data_type: varchar
+        meta:
+          title: 備考
+
+  - name: designated_shelter
+    description: |
+      全国の指定避難所（災害対策基本法第49条の7）の位置（ポイント）。
+      市区町村が指定した、災害により住居を失った場合等に一定期間滞在して生活する施設。
+      「指定緊急避難場所データ」（国土地理院）（https://hinanmap.gsi.go.jp/）を加工して作成。
+      緯度・経度が欠損する行は除外している。
+    access: public
+    config:
+      meta:
+        <<: *meta
+        title: "指定避難所"
+    columns:
+      - name: site_id
+        data_type: varchar
+        meta:
+          title: 共通ID
+          description: 市区町村コードを含む指定避難所の共通ID
+      - name: muni_name
+        data_type: varchar
+        meta:
+          title: 都道府県名及び市町村名
+      - name: site_name
+        data_type: varchar
+        meta:
+          title: 施設・場所名
+      - name: address
+        data_type: varchar
+        meta:
+          title: 住所
+      - name: same_address_as_evacuation_site
+        data_type: boolean
+        meta:
+          title: 指定緊急避難場所との住所同一
+          description: 同一住所の指定緊急避難場所が存在する場合 TRUE
+      - name: additional_matters
+        data_type: varchar
+        meta:
+          title: その他市町村長が必要と認める事項
+      - name: accepted_evacuees
+        data_type: varchar
+        meta:
+          title: 受入対象者
+      - name: latitude
+        data_type: double
+        meta:
+          title: 緯度
+      - name: longitude
+        data_type: double
+        meta:
+          title: 経度
+      - name: geometry
+        data_type: geometry
+        meta:
+          title: 避難所ポイント
+          description: "経度・緯度から生成したポイント (CRS: EPSG:6668 / JGD2011)"
+      - name: note
+        data_type: varchar
+        meta:
+          title: 備考

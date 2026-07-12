@@ -1,0 +1,19 @@
+name: "gsi"
+version: "1.0.0"
+
+profile: "gsi"
+
+model-paths: ["models"]
+macro-paths: ["macros", "shared/macros"]
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  gsi:
+    +database: gsi
+    main:
+      raw:
+        +materialized: table
+      stg:
+        +materialized: view
+      mart:
+        +materialized: table
