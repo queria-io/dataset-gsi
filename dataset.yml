@@ -1,0 +1,57 @@
+spec_version: "0.1"
+name: gsi
+title: 国土地理院
+description: |-
+  国土地理院「指定緊急避難場所データ」（https://hinanmap.gsi.go.jp/）を加工して作成。
+  全国の市区町村が指定する指定緊急避難場所・指定避難所の名称・住所・対応災害種別・位置（ポイント）を提供。
+keywords:
+  - 防災
+  - 避難場所
+  - 避難所
+  - 指定緊急避難場所
+  - 指定避難所
+  - GIS
+  - 国土地理院
+homepage: https://github.com/queria-io/dataset-gsi
+language: ja
+
+licenses:
+  - JP-GSI-PDL-1.0
+
+sources:
+  - title: 指定緊急避難場所データ（全国データ配信）
+    path: https://hinanmap.gsi.go.jp/
+  - title: 指定緊急避難場所データ（国土地理院）
+    path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
+
+contributors:
+  - title: 国土地理院
+    path: https://www.gsi.go.jp/
+    roles: [rightsHolder]
+
+spatial_coverage: [JP]
+update_frequency: irregular
+cover: ⛑️
+
+ai_context:
+  instructions: |
+    最寄りの避難場所を探す、市区町村ごとの避難場所の数や災害種別の充足を比べる、
+    人口や浸水想定と重ねて到達圏を見る、といった防災の分析に使う。
+    指定緊急避難場所（11万5533件）と指定避難所（8万3076件）は別の制度で、別の表になっている。
+    前者は切迫した危険から命を守るために逃げる場所（災害種別ごとに指定）、
+    後者は住居を失った場合などに滞在する施設。同じ施設が両方に指定されることがあり、
+    その場合は same_address_as_shelter / same_address_as_evacuation_site が立つ。
+    指定緊急避難場所は災害種別ごとの指定なので、「洪水で使える場所」を数えるときは
+    for_flood のような種別フラグで絞る。全部の種別に対応する場所ではない。
+    緯度経度が欠けている行は取り込み時に除外している。座標は EPSG:6668（JGD2011）。
+    市区町村からの報告に基づき随時更新されるため、市区町村ごとに更新時点が揃っていない。
+    site_id の先頭5桁が市区町村コードなので lg_code や address_br と結合できる。
+  synonyms: [避難所, 避難場所, 防災マップ, 指定緊急避難場所, 指定避難所]
+  examples:
+    - 市区町村別の指定緊急避難場所の数を出したい
+    - 津波に対応する避難場所を沿岸の市区町村で数えたい
+    - 指定避難所と指定緊急避難場所を兼ねる施設はどれくらい？
+
+schemas:
+  - name: main
+    title: メイン

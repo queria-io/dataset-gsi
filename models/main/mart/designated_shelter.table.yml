@@ -1,0 +1,45 @@
+schema: main
+name: designated_shelter
+title: 指定避難所
+description: '全国の指定避難所（災害対策基本法第49条の7）の位置（ポイント）。
+
+  市区町村が指定した、災害により住居を失った場合等に一定期間滞在して生活する施設。
+
+  「指定緊急避難場所データ」（国土地理院）（https://hinanmap.gsi.go.jp/）を加工して作成。
+
+  緯度・経度が欠損する行は除外している。'
+keywords:
+  - 防災
+  - 避難場所
+  - 避難所
+  - GIS
+  - 国土地理院
+published: true
+sources:
+  - path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
+fields:
+  - name: site_id
+    title: 共通ID
+    description: 市区町村コードを含む指定避難所の共通ID
+  - name: muni_name
+    title: 都道府県名及び市町村名
+  - name: site_name
+    title: 施設・場所名
+  - name: address
+    title: 住所
+  - name: same_address_as_evacuation_site
+    title: 指定緊急避難場所との住所同一
+    description: 同一住所の指定緊急避難場所が存在する場合 TRUE
+  - name: additional_matters
+    title: その他市町村長が必要と認める事項
+  - name: accepted_evacuees
+    title: 受入対象者
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
+  - name: geometry
+    title: 避難所ポイント
+    description: '経度・緯度から生成したポイント (CRS: EPSG:6668 / JGD2011)'
+  - name: note
+    title: 備考

@@ -1,0 +1,29 @@
+schema: main
+name: raw_designated_shelter
+description: 国土地理院「指定避難所データ」の全国統合 CSV (mergeFromCity_1.csv)。
+published: false
+sources:
+  - path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
+fields:
+  - name: "no"
+    title: 連番
+  - name: site_id
+    title: 共通ID
+  - name: muni_name
+    title: 都道府県名及び市町村名
+  - name: site_name
+    title: 施設・場所名
+  - name: address
+    title: 住所
+  - name: same_address_as_evacuation_site
+    title: 指定緊急避難場所との住所同一
+  - name: additional_matters
+    title: その他市町村長が必要と認める事項
+  - name: accepted_evacuees
+    title: 受入対象者
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
+  - name: note
+    title: 備考
