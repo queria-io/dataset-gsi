@@ -1,0 +1,65 @@
+schema: main
+name: emergency_evacuation_site
+title: 指定緊急避難場所
+description: '全国の指定緊急避難場所（災害対策基本法第49条の4）の位置（ポイント）。
+
+  市区町村が災害種別ごとに指定した、切迫した災害の危険から命を守るために避難する場所。
+
+  「指定緊急避難場所データ」（国土地理院）（https://hinanmap.gsi.go.jp/）を加工して作成。
+
+  緯度・経度が欠損する行は除外している。'
+keywords:
+  - 防災
+  - 避難場所
+  - 避難所
+  - GIS
+  - 国土地理院
+published: true
+sources:
+  - path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
+fields:
+  - name: site_id
+    title: 共通ID
+    description: 市区町村コードを含む指定緊急避難場所の共通ID
+  - name: muni_name
+    title: 都道府県名及び市町村名
+  - name: site_name
+    title: 施設・場所名
+  - name: address
+    title: 住所
+  - name: for_flood
+    title: 洪水
+    description: 洪水に対応する指定緊急避難場所
+  - name: for_landslide
+    title: 崖崩れ・土石流・地滑り
+    description: 崖崩れ、土石流及び地滑りに対応する指定緊急避難場所
+  - name: for_storm_surge
+    title: 高潮
+    description: 高潮に対応する指定緊急避難場所
+  - name: for_earthquake
+    title: 地震
+    description: 地震に対応する指定緊急避難場所
+  - name: for_tsunami
+    title: 津波
+    description: 津波に対応する指定緊急避難場所
+  - name: for_large_fire
+    title: 大規模な火事
+    description: 大規模な火事に対応する指定緊急避難場所
+  - name: for_inland_flooding
+    title: 内水氾濫
+    description: 内水氾濫に対応する指定緊急避難場所
+  - name: for_volcano
+    title: 火山現象
+    description: 火山現象に対応する指定緊急避難場所
+  - name: same_address_as_shelter
+    title: 指定避難所との住所同一
+    description: 同一住所の指定避難所が存在する場合 TRUE
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
+  - name: geometry
+    title: 避難場所ポイント
+    description: '経度・緯度から生成したポイント (CRS: EPSG:6668 / JGD2011)'
+  - name: note
+    title: 備考
