@@ -52,7 +52,7 @@
 
 ```bash
 uv sync
-bash scripts/build.sh local
+bash scripts/build.sh
 ```
 
 パイプラインは全国統合 CSV（UTF-8 BOM 付き）を `data/` にダウンロードし（既存ファイルはスキップ）、dbt で raw → stg → mart の3層を構築する。
