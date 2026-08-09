@@ -3,12 +3,6 @@ version: 2
 models:
   - name: raw_emergency_evacuation_site
     description: 国土地理院「指定緊急避難場所データ」の全国統合 CSV (mergeFromCity_2.csv)。災害種別列は指定あり=1、指定なし=空。
-    config:
-      meta:
-        source_url: "https://www.gsi.go.jp/bousaichiri/hinanbasho.html"
 
   - name: raw_designated_shelter
     description: 国土地理院「指定避難所データ」の全国統合 CSV (mergeFromCity_1.csv)。
-    config:
-      meta:
-        source_url: "https://www.gsi.go.jp/bousaichiri/hinanbasho.html"
