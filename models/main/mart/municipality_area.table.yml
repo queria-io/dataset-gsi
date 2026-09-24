@@ -1,0 +1,49 @@
+schema: main
+name: municipality_area
+title: 全国都道府県市区町村別面積
+description: '全国・都道府県・郡・市区町村・政令市の区の面積（k㎡）。
+
+  国土地理院「全国都道府県市区町村別面積調」（https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm）を加工して作成。
+
+  2014年から2018年は年1回（10月1日時点）、2019年7月1日時点以降は四半期ごと（2020年4月1日時点は中止）。
+
+  電子国土基本図の海岸線と市区町村界で囲まれた範囲を測ったもので、河川と湖沼は陸域に含む。
+
+  境界未定部を持つ地域の面積は便宜上の概算で、is_reference_value が TRUE になる。
+
+  1行 = 1地域 × 1時点。政令市とその区、都道府県とその市部・郡部は別の行として並ぶので、合計するときは area_type で絞る。'
+keywords:
+  - 面積
+  - 市区町村
+  - 都道府県
+  - 人口密度
+  - 国土地理院
+published: true
+sources:
+  - path: https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm
+fields:
+  - name: survey_date
+    title: 時点
+    description: 面積を測った時点（1月1日・4月1日・7月1日・10月1日のいずれか）
+  - name: area_code
+    title: 標準地域コード
+    description: 5桁の標準地域コード。全国・都道府県の内訳・市区町村外の行は NULL
+  - name: area_type
+    title: 地域の種別
+    description: 全国 / 都道府県 / 都道府県の内訳（市部・郡部・町村部・特別区部など） / 郡・支庁等 / 市区町村 / 政令市の区 / 市区町村外（所属未定の埋立地・島、市町村の面積に含めない湖沼など）
+  - name: prefecture_name
+    title: 都道府県名
+  - name: county_name
+    title: 郡・支庁・振興局等
+  - name: area_name
+    title: 地域名
+    description: 政令市の区は「札幌市中央区」の形、都道府県の内訳は「北海道(市部)」の形
+  - name: area_km2
+    title: 面積（k㎡）
+    description: 小数第三位を四捨五入した値。四捨五入が公表単位ごとなので、市区町村の合計は都道府県の面積と一致しないことがある
+  - name: is_reference_value
+    title: 参考値
+    description: 境界未定部を持ち、面積が便宜上の概算であれば TRUE
+  - name: note
+    title: 備考
+    description: 面積から除いている区域や、どの合計に含まれるかの注記。元データに注記の無い時点があり、2026年4月1日時点は全行 NULL

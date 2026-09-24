@@ -6,3 +6,6 @@ models:
 
   - name: raw_designated_shelter
     description: 国土地理院「指定避難所データ」の全国統合 CSV (mergeFromCity_1.csv)。
+
+  - name: raw_municipality_area
+    description: 国土地理院「全国都道府県市区町村別面積調」の CSV 3ファイル（R8_04_mencho.csv / R1_R5_mencho.csv / H26_H30_mencho.csv）を縦持ちにしたもの。面積が「-」の行はその時点に存在しなかった地域。

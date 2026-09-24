@@ -74,3 +74,28 @@ models:
         data_type: geometry
       - name: note
         data_type: varchar
+
+  - name: municipality_area
+    description: |
+      全国・都道府県・郡・市区町村・政令市の区の面積（k㎡）。1行 = 1地域 × 1時点。2014年から2018年は年1回（10月1日時点）、2019年7月1日時点以降は四半期ごと（2020年4月1日時点は中止）。
+      国土地理院「全国都道府県市区町村別面積調」を加工して作成。
+    access: public
+    columns:
+      - name: survey_date
+        data_type: date
+      - name: area_code
+        data_type: varchar
+      - name: area_type
+        data_type: varchar
+      - name: prefecture_name
+        data_type: varchar
+      - name: county_name
+        data_type: varchar
+      - name: area_name
+        data_type: varchar
+      - name: area_km2
+        data_type: double
+      - name: is_reference_value
+        data_type: boolean
+      - name: note
+        data_type: varchar

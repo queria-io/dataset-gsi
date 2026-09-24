@@ -1,0 +1,25 @@
+schema: main
+name: raw_municipality_area
+description: 国土地理院「全国都道府県市区町村別面積調」の CSV 3ファイルを、1行 = 1地域 × 1時点の縦持ちにしたもの。値は CSV の表記のまま。
+published: false
+sources:
+  - path: https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm
+fields:
+  - name: source_file
+    title: 取得元ファイル名
+  - name: survey_label
+    title: 時点の見出し
+  - name: survey_date
+    title: 時点
+  - name: area_code
+    title: 標準地域コード
+  - name: prefecture
+    title: 都道府県
+  - name: county
+    title: 郡・支庁・振興局等
+  - name: municipality
+    title: 市区町村
+  - name: area_km2
+    title: 面積（k㎡）
+  - name: remark
+    title: 備考
