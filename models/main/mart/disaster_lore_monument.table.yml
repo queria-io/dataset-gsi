@@ -27,10 +27,10 @@ sources:
 fields:
   - name: monument_id
     title: ID
-    description: 伝承碑のID（例 01202-001）。先頭5桁は市区町村コード、後ろ3桁は市区町村内の連番
+    description: 伝承碑のID（例 01202-001）。先頭5桁は掲載を申請した市区町村のコード、後ろ3桁はその市区町村内の連番
   - name: municipality_code
     title: 市区町村コード
-    description: monument_id の先頭5桁。チェックディジットを除いた5桁の全国地方公共団体コード
+    description: monument_id の先頭5桁。掲載を申請した市区町村の5桁の全国地方公共団体コード（チェックディジットなし）。碑が建っている市区町村と違うことがある（宮古市のコードで所在地が山田町の碑がある）ので、所在地で数えるときは address も見る
   - name: monument_name
     title: 碑名
   - name: erected_year_label

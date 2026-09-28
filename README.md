@@ -79,8 +79,8 @@
 
 全国の自然災害伝承碑（ポイント）。緯度・経度が欠損する行は除外している。
 
-- monument_id: ID（先頭5桁が市区町村コード）
-- municipality_code: 市区町村コード（5桁）
+- monument_id: ID（先頭5桁が掲載を申請した市区町村のコード）
+- municipality_code: 掲載を申請した市区町村のコード（5桁。碑の所在地の市区町村と違うことがある）
 - monument_name: 碑名
 - erected_year_label: 建立年（原文。「不明」「1940頃」なども含む）
 - erected_year: 建立年（原文が西暦4桁のときだけ。それ以外は NULL）
