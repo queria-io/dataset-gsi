@@ -1,0 +1,31 @@
+schema: main
+name: raw_disaster_lore_monument
+description: 国土地理院「自然災害伝承碑データ」の全国 CSV。
+published: false
+sources:
+  - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
+fields:
+  - name: monument_id
+    title: ID
+  - name: monument_name
+    title: 碑名
+  - name: erected_year
+    title: 建立年
+  - name: address
+    title: 所在地
+  - name: disaster_name
+    title: 災害名
+  - name: disaster_type
+    title: 災害種別
+  - name: lore
+    title: 伝承内容
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
+  - name: published_date
+    title: 公開日
+  - name: revised_dates
+    title: 修正等公開日
+  - name: restriction
+    title: 制限事項

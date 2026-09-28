@@ -2,10 +2,11 @@ spec_version: "0.1"
 name: gsi
 title: 国土地理院
 description: |-
-  国土地理院「指定緊急避難場所データ」（https://hinanmap.gsi.go.jp/）と
-  「全国都道府県市区町村別面積調」（https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm）を加工して作成。
+  国土地理院「指定緊急避難場所データ」（https://hinanmap.gsi.go.jp/）、
+  「全国都道府県市区町村別面積調」（https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm）、
+  「自然災害伝承碑データ」（https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html）を加工して作成。
   全国の市区町村が指定する指定緊急避難場所・指定避難所の名称・住所・対応災害種別・位置（ポイント）と、
-  全国・都道府県・市区町村の面積を提供。
+  全国・都道府県・市区町村の面積、過去の自然災害を伝える石碑・モニュメントの位置と伝承内容を提供。
 keywords:
   - 防災
   - 避難場所
@@ -14,6 +15,7 @@ keywords:
   - 指定避難所
   - GIS
   - 面積
+  - 自然災害伝承碑
   - 国土地理院
 homepage: https://github.com/queria-io/dataset-gsi
 language: ja
@@ -28,6 +30,8 @@ sources:
     path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
   - title: 全国都道府県市区町村別面積調（国土地理院）
     path: https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm
+  - title: 自然災害伝承碑データ（国土地理院）
+    path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
 
 contributors:
   - title: 国土地理院
@@ -56,13 +60,18 @@ ai_context:
     政令市（札幌市）とその区（札幌市中央区）、都道府県とその市部・郡部が別の行として並ぶので、
     合計するときは area_type = '市区町村' のように種別で絞る。
     area_type = '市区町村' には北方領土の6村も含まれる。
-  synonyms: [避難所, 避難場所, 防災マップ, 指定緊急避難場所, 指定避難所, 面積調, 市区町村面積]
+    disaster_lore_monument は過去の災害を伝える石碑・モニュメントで、市区町村の申請で掲載される。
+    碑が無いのか申請していないのかは区別できないので、件数の少なさを災害の少なさと読まない。
+    1つの碑が複数の災害種別を持つので、種別で数えるときは is_flood のようなフラグで絞る。
+    municipality_code は5桁の市区町村コード。
+  synonyms: [避難所, 避難場所, 防災マップ, 指定緊急避難場所, 指定避難所, 面積調, 市区町村面積, 自然災害伝承碑, 災害碑, 慰霊碑]
   examples:
     - 市区町村別の指定緊急避難場所の数を出したい
     - 津波に対応する避難場所を沿岸の市区町村で数えたい
     - 指定避難所と指定緊急避難場所を兼ねる施設はどれくらい？
     - 市区町村別の人口密度を出したい
     - この10年で面積が増えた市区町村は？
+    - 津波を伝える自然災害伝承碑が多い市区町村は？
 
 schemas:
   - name: main

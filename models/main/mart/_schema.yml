@@ -99,3 +99,57 @@ models:
         data_type: boolean
       - name: note
         data_type: varchar
+
+  - name: disaster_lore_monument
+    description: |
+      全国の自然災害伝承碑の位置（ポイント）と、碑が伝える災害・伝承内容。
+      国土地理院「自然災害伝承碑データ」を加工して作成。緯度・経度が欠損する行は除外している。
+    access: public
+    columns:
+      - name: monument_id
+        data_type: varchar
+        data_tests:
+          - unique
+          - not_null
+      - name: municipality_code
+        data_type: varchar
+      - name: monument_name
+        data_type: varchar
+      - name: erected_year_label
+        data_type: varchar
+      - name: erected_year
+        data_type: integer
+      - name: address
+        data_type: varchar
+      - name: disaster_name
+        data_type: varchar
+      - name: disaster_type
+        data_type: varchar
+      - name: is_flood
+        data_type: boolean
+      - name: is_landslide
+        data_type: boolean
+      - name: is_storm_surge
+        data_type: boolean
+      - name: is_earthquake
+        data_type: boolean
+      - name: is_tsunami
+        data_type: boolean
+      - name: is_volcano
+        data_type: boolean
+      - name: is_other
+        data_type: boolean
+      - name: lore
+        data_type: varchar
+      - name: latitude
+        data_type: double
+      - name: longitude
+        data_type: double
+      - name: geometry
+        data_type: geometry
+      - name: published_date
+        data_type: date
+      - name: last_revised_date
+        data_type: date
+      - name: restriction
+        data_type: varchar
