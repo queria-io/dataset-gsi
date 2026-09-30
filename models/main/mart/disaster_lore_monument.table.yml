@@ -1,0 +1,82 @@
+schema: main
+name: disaster_lore_monument
+title: 自然災害伝承碑
+description: '全国の自然災害伝承碑の位置（ポイント）と、碑が伝える災害・伝承内容。
+
+  自然災害伝承碑は、過去に起きた津波・洪水・火山災害・土砂災害等の様相や被害を伝える石碑やモニュメントで、
+
+  市区町村からの申請に基づいて国土地理院が地理院地図に掲載している。
+
+  国土地理院「自然災害伝承碑データ」（https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html）を加工して作成。
+
+  掲載は市区町村の申請によるので、碑が無い市区町村と申請していない市区町村はこの表では区別できない。
+
+  同じ災害でも碑ごとに災害名の表記が違うことがあるので、災害で集計するときは disaster_name の完全一致に頼らない。
+
+  地理院地図に載っている碑の写真はこの表に含まない。'
+keywords:
+  - 防災
+  - 自然災害伝承碑
+  - 災害史
+  - 石碑
+  - GIS
+  - 国土地理院
+published: true
+sources:
+  - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
+fields:
+  - name: monument_id
+    title: ID
+    description: 伝承碑のID（例 01202-001）。先頭5桁は掲載を申請した市区町村のコード、後ろ3桁はその市区町村内の連番
+  - name: municipality_code
+    title: 市区町村コード
+    description: monument_id の先頭5桁。掲載を申請した市区町村の5桁の全国地方公共団体コード（チェックディジットなし）。碑が建っている市区町村と違うことがある（宮古市のコードで所在地が山田町の碑がある）ので、所在地で数えるときは address も見る
+  - name: monument_name
+    title: 碑名
+  - name: erected_year_label
+    title: 建立年（原文）
+    description: 配布データの建立年をそのまま入れた文字列。「不明」「1940頃」「不明(1896？)」のような表記を含む
+  - name: erected_year
+    title: 建立年
+    description: erected_year_label が西暦4桁だけのときの年。それ以外（不明・推定・複数年）は NULL
+  - name: address
+    title: 所在地
+  - name: disaster_name
+    title: 災害名
+    description: 碑が伝える災害の名称。同じ災害でも碑ごとに表記が違うことがある
+  - name: disaster_type
+    title: 災害種別
+    description: 洪水・土砂災害・高潮・地震・津波・火山災害・その他 を「・」でつないだ文字列（例 洪水・土砂災害）。1つの碑が複数の種別を持つ
+  - name: is_flood
+    title: 災害種別に洪水を含む
+  - name: is_landslide
+    title: 災害種別に土砂災害を含む
+  - name: is_storm_surge
+    title: 災害種別に高潮を含む
+  - name: is_earthquake
+    title: 災害種別に地震を含む
+  - name: is_tsunami
+    title: 災害種別に津波を含む
+  - name: is_volcano
+    title: 災害種別に火山災害を含む
+  - name: is_other
+    title: 災害種別にその他を含む
+  - name: lore
+    title: 伝承内容
+    description: 碑が伝える災害の様相・被害・教訓の説明文
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
+  - name: geometry
+    title: 伝承碑ポイント
+    description: 経度・緯度から生成したポイント。地理院地図上の伝承碑アイコンの位置
+  - name: published_date
+    title: 公開日
+    description: 地理院地図に掲載した日
+  - name: last_revised_date
+    title: 最終修正公開日
+    description: 掲載内容を修正して公開し直した日のうち最新のもの。修正していない碑は NULL
+  - name: restriction
+    title: 制限事項
+    description: 配布データの制限事項をそのまま入れた文字列。写真の二次利用の申請先や、建立場所への立ち入りの許可について書かれている。無い碑は NULL

@@ -9,3 +9,6 @@ models:
 
   - name: raw_municipality_area
     description: 国土地理院「全国都道府県市区町村別面積調」の CSV 3ファイル（R8_04_mencho.csv / R1_R5_mencho.csv / H26_H30_mencho.csv）を縦持ちにしたもの。面積が「-」の行はその時点に存在しなかった地域。
+
+  - name: raw_disaster_lore_monument
+    description: 国土地理院「自然災害伝承碑データ」の全国 CSV。日付は「2019/9/1」形式の文字列で、修正等公開日は「、」区切りで複数入ることがある。

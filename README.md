@@ -1,6 +1,6 @@
 # dataset-gsi
 
-国土地理院「指定緊急避難場所データ」（hinanmap.gsi.go.jp）の指定緊急避難場所・指定避難所と、「全国都道府県市区町村別面積調」の面積を DuckLake カタログ化したデータセット。
+国土地理院「指定緊急避難場所データ」（hinanmap.gsi.go.jp）の指定緊急避難場所・指定避難所、「全国都道府県市区町村別面積調」の面積、「自然災害伝承碑データ」の伝承碑を DuckLake カタログ化したデータセット。
 
 ## データ出典
 
@@ -19,6 +19,10 @@
 - 過去の面積調（CSV）: https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm
 
 電子国土基本図の海岸線と市区町村界で囲まれた範囲を測ったもので、河川と湖沼は陸域に含む。2018年までは年1回（10月1日時点）、2019年7月1日時点以降は四半期ごとに測っている（2020年4月1日時点は中止）。
+
+自然災害伝承碑は国土地理院が配布する全国1ファイルの CSV（ZIP、版ごとにファイル名が変わる）を使用する。市区町村からの申請に基づいて地理院地図に掲載された、過去の自然災害を伝える石碑・モニュメントの位置と伝承内容。地理院地図に載っている碑の写真は配布データに含まれない。
+
+- 自然災害伝承碑データの提供について: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
 
 ## ライセンス
 
@@ -71,6 +75,28 @@
 
 政令市とその区、都道府県とその市部・郡部は別の行として並ぶので、合計するときは area_type で絞る。「市区町村外」は所属未定の埋立地・島と、市町村の面積に含めない湖沼（然別湖・風蓮湖・八郎潟調整池の一部・本栖湖・児島湖など）。
 
+## テーブル: disaster_lore_monument
+
+全国の自然災害伝承碑（ポイント）。緯度・経度が欠損する行は除外している。
+
+- monument_id: ID（先頭5桁が掲載を申請した市区町村のコード）
+- municipality_code: 掲載を申請した市区町村のコード（5桁。碑の所在地の市区町村と違うことがある）
+- monument_name: 碑名
+- erected_year_label: 建立年（原文。「不明」「1940頃」なども含む）
+- erected_year: 建立年（原文が西暦4桁のときだけ。それ以外は NULL）
+- address: 所在地
+- disaster_name: 災害名（同じ災害でも碑ごとに表記が違うことがある）
+- disaster_type: 災害種別（洪水・土砂災害・高潮・地震・津波・火山災害・その他 を「・」でつないだ文字列）
+- is_flood / is_landslide / is_storm_surge / is_earthquake / is_tsunami / is_volcano / is_other: 災害種別に洪水 / 土砂災害 / 高潮 / 地震 / 津波 / 火山災害 / その他 を含む
+- lore: 伝承内容
+- latitude / longitude: 緯度・経度
+- geometry: 伝承碑ポイント
+- published_date: 公開日
+- last_revised_date: 最終修正公開日（修正していない碑は NULL）
+- restriction: 制限事項（写真の二次利用の申請先や、建立場所への立ち入りの許可）
+
+掲載は市区町村の申請によるので、碑が無い市区町村と申請していない市区町村は区別できない。
+
 ## ビルド
 
 ```bash
@@ -78,4 +104,4 @@ uv sync
 bash scripts/build.sh
 ```
 
-パイプラインは避難場所の全国統合 CSV（UTF-8 BOM 付き）と面積調の CSV（Shift_JIS、時点が横に並ぶ）を `data/` にダウンロードし（既存ファイルはスキップ）、dbt で raw → stg → mart の3層を構築する。面積調は取得時に縦持ちの `data/municipality_area.csv` にまとめる。
+パイプラインは避難場所の全国統合 CSV（UTF-8 BOM 付き）と面積調の CSV（Shift_JIS、時点が横に並ぶ）を `data/` にダウンロードし（既存ファイルはスキップ）、dbt で raw → stg → mart の3層を構築する。面積調は取得時に縦持ちの `data/municipality_area.csv` にまとめる。自然災害伝承碑はダウンロードページから最新版の ZIP を探し、中の CSV を `data/disaster_lore.csv` に置く。
