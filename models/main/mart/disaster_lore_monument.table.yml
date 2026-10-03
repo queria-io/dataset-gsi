@@ -31,6 +31,7 @@ fields:
   - name: municipality_code
     title: 市区町村コード
     description: monument_id の先頭5桁。掲載を申請した市区町村の5桁の全国地方公共団体コード（チェックディジットなし）。碑が建っている市区町村と違うことがある（宮古市のコードで所在地が山田町の碑がある）ので、所在地で数えるときは address も見る
+    semantic: { role: entity, name: city }
   - name: monument_name
     title: 碑名
   - name: erected_year_label

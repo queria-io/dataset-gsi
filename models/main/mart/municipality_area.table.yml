@@ -28,6 +28,7 @@ fields:
   - name: area_code
     title: 標準地域コード
     description: 5桁の標準地域コード。全国・都道府県の内訳・市区町村外の行は NULL
+    semantic: { role: entity, name: city }
   - name: area_type
     title: 地域の種別
     description: 全国 / 都道府県 / 都道府県の内訳（市部・郡部・町村部・特別区部など） / 郡・支庁等 / 市区町村 / 政令市の区 / 市区町村外（所属未定の埋立地・島、市町村の面積に含めない湖沼など）
