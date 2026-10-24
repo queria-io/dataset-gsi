@@ -19,6 +19,7 @@ keywords:
   - 国土地理院
 homepage: https://github.com/queria-io/dataset-gsi
 language: ja
+themes: [justice_safety_environment, land_climate]
 
 licenses:
   - JP-GSI-PDL-1.0
