@@ -22,6 +22,7 @@ keywords:
   - GIS
   - 国土地理院
 published: true
+themes: [justice_safety_environment]
 sources:
   - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
 fields:
