@@ -1,19 +1,11 @@
 schema: main
 name: disaster_lore_monument
 title: 自然災害伝承碑
-description: '全国の自然災害伝承碑の位置（ポイント）と、碑が伝える災害・伝承内容。
+description: |-
+  全国の自然災害伝承碑の位置と、碑が伝える災害・伝承内容です。
 
-  自然災害伝承碑は、過去に起きた津波・洪水・火山災害・土砂災害等の様相や被害を伝える石碑やモニュメントで、
-
-  市区町村からの申請に基づいて国土地理院が地理院地図に掲載している。
-
-  国土地理院「自然災害伝承碑データ」（https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html）を加工して作成。
-
-  掲載は市区町村の申請によるので、碑が無い市区町村と申請していない市区町村はこの表では区別できない。
-
-  同じ災害でも碑ごとに災害名の表記が違うことがあるので、災害で集計するときは disaster_name の完全一致に頼らない。
-
-  地理院地図に載っている碑の写真はこの表に含まない。'
+  - 掲載は市区町村の申請によるため、碑が無い市区町村と申請していない市区町村は区別できません
+  - 同じ災害でも碑ごとに災害名の表記が違うことがあります
 keywords:
   - 防災
   - 自然災害伝承碑
@@ -28,10 +20,10 @@ sources:
 fields:
   - name: monument_id
     title: ID
-    description: 伝承碑のID（例 01202-001）。先頭5桁は掲載を申請した市区町村のコード、後ろ3桁はその市区町村内の連番
+    description: 伝承碑の ID（例 01202-001）。先頭 5 桁は申請した市区町村のコード
   - name: municipality_code
     title: 市区町村コード
-    description: monument_id の先頭5桁。掲載を申請した市区町村の5桁の全国地方公共団体コード（チェックディジットなし）。碑が建っている市区町村と違うことがある（宮古市のコードで所在地が山田町の碑がある）ので、所在地で数えるときは address も見る
+    description: 掲載を申請した市区町村のコード（5 桁）。所在地の市区町村と違うことがある
     semantic: { role: entity, name: city }
   - name: monument_name
     title: 碑名
@@ -48,7 +40,7 @@ fields:
     description: 碑が伝える災害の名称。同じ災害でも碑ごとに表記が違うことがある
   - name: disaster_type
     title: 災害種別
-    description: 洪水・土砂災害・高潮・地震・津波・火山災害・その他 を「・」でつないだ文字列（例 洪水・土砂災害）。1つの碑が複数の種別を持つ
+    description: 災害種別を「・」でつないだ文字列（例 洪水・土砂災害）
   - name: is_flood
     title: 災害種別に洪水を含む
   - name: is_landslide
@@ -81,4 +73,4 @@ fields:
     description: 掲載内容を修正して公開し直した日のうち最新のもの。修正していない碑は NULL
   - name: restriction
     title: 制限事項
-    description: 配布データの制限事項をそのまま入れた文字列。写真の二次利用の申請先や、建立場所への立ち入りの許可について書かれている。無い碑は NULL
+    description: 写真の二次利用や立ち入りについての制限事項。無い碑は NULL

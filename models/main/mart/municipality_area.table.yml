@@ -1,17 +1,11 @@
 schema: main
 name: municipality_area
 title: 全国都道府県市区町村別面積
-description: '全国・都道府県・郡・市区町村・政令市の区の面積（k㎡）。
+description: |-
+  全国・都道府県・郡・市区町村・政令市の区の面積（k㎡）を、2014 年 10 月 1 日時点から時点ごとに持ちます。1 行が 1 地域 × 1 時点です。
 
-  国土地理院「全国都道府県市区町村別面積調」（https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm）を加工して作成。
-
-  2014年から2018年は年1回（10月1日時点）、2019年7月1日時点以降は四半期ごと（2020年4月1日時点は中止）。
-
-  電子国土基本図の海岸線と市区町村界で囲まれた範囲を測ったもので、河川と湖沼は陸域に含む。
-
-  境界未定部を持つ地域の面積は便宜上の概算で、is_reference_value が TRUE になる。
-
-  1行 = 1地域 × 1時点。政令市とその区、都道府県とその市部・郡部は別の行として並ぶので、合計するときは area_type で絞る。'
+  - 政令市とその区、都道府県とその内訳は別の行です。合計するときは area_type で絞ってください
+  - 境界未定部を持つ地域の面積は概算で、is_reference_value が TRUE です
 keywords:
   - 面積
   - 市区町村
@@ -32,7 +26,7 @@ fields:
     semantic: { role: entity, name: city }
   - name: area_type
     title: 地域の種別
-    description: 全国 / 都道府県 / 都道府県の内訳（市部・郡部・町村部・特別区部など） / 郡・支庁等 / 市区町村 / 政令市の区 / 市区町村外（所属未定の埋立地・島、市町村の面積に含めない湖沼など）
+    description: 地域の種別（全国／都道府県／都道府県の内訳／郡・支庁等／市区町村／政令市の区／市区町村外）
   - name: prefecture_name
     title: 都道府県名
   - name: county_name
@@ -48,4 +42,4 @@ fields:
     description: 境界未定部を持ち、面積が便宜上の概算であれば TRUE
   - name: note
     title: 備考
-    description: 面積から除いている区域や、どの合計に含まれるかの注記。元データに注記の無い時点があり、2026年4月1日時点は全行 NULL
+    description: 面積から除いている区域や、どの合計に含まれるかの注記
