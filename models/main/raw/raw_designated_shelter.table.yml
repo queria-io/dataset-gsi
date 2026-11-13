@@ -1,7 +1,7 @@
 schema: main
 name: raw_designated_shelter
 description: 国土地理院「指定避難所データ」の全国統合 CSV (mergeFromCity_1.csv)。
-published: false
+annotations: { queria: { published: false } }
 sources:
   - path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
 fields:

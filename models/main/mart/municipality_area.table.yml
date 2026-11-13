@@ -12,8 +12,7 @@ keywords:
   - 都道府県
   - 人口密度
   - 国土地理院
-published: true
-themes: [land_climate]
+annotations: { queria: { themes: [land_climate] } }
 sources:
   - path: https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm
 fields:
@@ -23,7 +22,7 @@ fields:
   - name: area_code
     title: 標準地域コード
     description: 5桁の標準地域コード。全国・都道府県の内訳・市区町村外の行は NULL
-    semantic: { role: entity, name: city }
+    annotations: { queria: { semantic: { role: entity, name: city } } }
   - name: area_type
     title: 地域の種別
     description: 地域の種別（全国／都道府県／都道府県の内訳／郡・支庁等／市区町村／政令市の区／市区町村外）
