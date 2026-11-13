@@ -1,7 +1,7 @@
 schema: main
 name: raw_municipality_area
 description: 国土地理院「全国都道府県市区町村別面積調」の CSV 3ファイルを、1行 = 1地域 × 1時点の縦持ちにしたもの。値は CSV の表記のまま。
-published: false
+annotations: { queria: { published: false } }
 sources:
   - path: https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm
 fields:

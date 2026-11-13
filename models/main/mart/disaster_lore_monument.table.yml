@@ -13,8 +13,7 @@ keywords:
   - 石碑
   - GIS
   - 国土地理院
-published: true
-themes: [justice_safety_environment]
+annotations: { queria: { themes: [justice_safety_environment] } }
 sources:
   - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
 fields:
@@ -24,7 +23,7 @@ fields:
   - name: municipality_code
     title: 市区町村コード
     description: 掲載を申請した市区町村のコード（5 桁）。所在地の市区町村と違うことがある
-    semantic: { role: entity, name: city }
+    annotations: { queria: { semantic: { role: entity, name: city } } }
   - name: monument_name
     title: 碑名
   - name: erected_year_label

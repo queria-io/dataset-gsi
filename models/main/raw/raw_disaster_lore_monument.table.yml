@@ -1,7 +1,7 @@
 schema: main
 name: raw_disaster_lore_monument
 description: 国土地理院「自然災害伝承碑データ」の全国 CSV。
-published: false
+annotations: { queria: { published: false } }
 sources:
   - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
 fields:
