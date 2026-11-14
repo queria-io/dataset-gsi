@@ -21,7 +21,7 @@ SELECT
     -- 修正等公開日は「2019/9/1、2019/12/5」のように修正のたびに日付が足されていくので、最後の日付を取る
     list_max(list_transform(
         regexp_extract_all(revised_dates, '[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}'),
-        d -> strptime(d, '%Y/%-m/%-d')::DATE
+        lambda d: strptime(d, '%Y/%-m/%-d')::DATE
     )) AS last_revised_date,
     restriction
 FROM {{ ref('raw_disaster_lore_monument') }}
