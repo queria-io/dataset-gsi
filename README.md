@@ -1,6 +1,6 @@
 # 国土地理院
 
-国土地理院が公開する、全国の指定緊急避難場所・指定避難所の位置と対応する災害、全国・都道府県・市区町村の面積の推移、自然災害伝承碑の位置と伝承内容を、SQL で検索・集計できるテーブルにしたデータセットです。
+国土地理院が公開する、全国の指定緊急避難場所・指定避難所の位置と対応する災害、全国・都道府県・市区町村の面積の推移、自然災害伝承碑の位置と伝承内容、日本の主な山岳の標高を、SQL で検索・集計できるテーブルにしたデータセットです。
 
 ## 出典と利用条件
 
@@ -9,6 +9,7 @@
 | [指定緊急避難場所データ](https://www.gsi.go.jp/bousaichiri/hinanbasho.html)（[全国データ配信](https://hinanmap.gsi.go.jp/)） | `main.emergency_evacuation_site`・`main.designated_shelter` |
 | [全国都道府県市区町村別面積調](https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm)（[過去の面積調](https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm)） | `main.municipality_area` |
 | [自然災害伝承碑データ](https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html) | `main.disaster_lore_monument` |
+| [日本の主な山岳標高](https://www.gsi.go.jp/kihonjohochousa/kihonjohochousa41139.html) | `main.mountain` |
 
 - [国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)（公共データ利用規約 PDL 1.0）に従います。出典を明記すれば商用利用を含めて利用できます
 
@@ -20,6 +21,7 @@
 | `main.designated_shelter` | 指定避難所。災害で住居を失った場合などに一定期間滞在して生活する施設です |
 | `main.municipality_area` | 全国・都道府県・郡・市区町村・政令市の区の面積。1 行が 1 地域 × 1 時点 |
 | `main.disaster_lore_monument` | 自然災害伝承碑。過去の津波・洪水・火山災害・土砂災害などを伝える石碑やモニュメント |
+| `main.mountain` | 日本の主な山岳の山頂の位置と標高。1 行が 1 つの山頂 |
 
 ## 使い方
 
@@ -120,6 +122,22 @@ ORDER BY monuments DESC;
 - 掲載は市区町村の申請によるため、碑が無い市区町村と申請していない市区町村は区別できません
 - `municipality_code` は申請した市区町村のコードで、碑の所在地と違うことがあります（宮古市のコードで所在地が山田町の碑があります）。所在地で数えるときは `address` も確認してください
 - 同じ災害でも碑ごとに災害名の表記が違うことがあります。災害で集計するときは `disaster_name` の完全一致に頼らず、`disaster_type` や `is_*` の列を使ってください
+
+## 日本の主な山岳標高
+
+1 行が 1 つの山頂です。
+
+- mountain_id / index_number: 配布データの連番 / 索引番号（同じ山に山頂が複数あるときは 14-1 のように枝番付き）
+- mountain_index: 索引番号から枝番を除いた番号（山の通し番号。1003 通り）
+- mountain_name / peak_name: 山名 / 山頂名（山名に添えられている行だけ。例 富士山の剣ヶ峯、大雪山の旭岳）
+- mountain_name_kana / peak_name_kana: 山名よみ / 山頂名よみ
+- elevation_m: 標高（m、整数）
+- point_type: 標高の出どころ（三角点・標高点・測定点）
+- prefectures / prefecture_names: 都道府県（複数にまたがる山は空白区切りの文字列 / リスト）
+- latitude / longitude: 緯度・経度
+- geometry: 山頂ポイント
+
+- 都道府県をまたぐ山は 1 行で、県ごとには分かれていません。県で絞るときは `list_contains(prefecture_names, '長野県')` を使います
 
 ## 更新
 

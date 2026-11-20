@@ -153,3 +153,38 @@ models:
         data_type: date
       - name: restriction
         data_type: varchar
+
+  - name: mountain
+    description: |
+      日本の主な山岳の山頂の位置と標高（ポイント）。1行が1つの山頂。
+      「日本の主な山岳標高」（国土地理院）（https://www.gsi.go.jp/kihonjohochousa/kihonjohochousa41139.html）を加工して作成。
+    access: public
+    columns:
+      - name: mountain_id
+        data_type: integer
+      - name: index_number
+        data_type: varchar
+      - name: mountain_index
+        data_type: integer
+      - name: mountain_name
+        data_type: varchar
+      - name: peak_name
+        data_type: varchar
+      - name: mountain_name_kana
+        data_type: varchar
+      - name: peak_name_kana
+        data_type: varchar
+      - name: elevation_m
+        data_type: integer
+      - name: point_type
+        data_type: varchar
+      - name: prefectures
+        data_type: varchar
+      - name: prefecture_names
+        data_type: varchar[]
+      - name: latitude
+        data_type: double
+      - name: longitude
+        data_type: double
+      - name: geometry
+        data_type: geometry
