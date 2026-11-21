@@ -1,0 +1,56 @@
+schema: main
+name: mountain
+title: 日本の主な山岳標高
+description: |-
+  日本の主な山岳の山頂の位置と標高です。1行が1つの山頂で、同じ山に山頂が複数あるときは山頂ごとに行があります。山の数は mountain_index の種類数（1003）で数えます。
+
+  - 標高は三角点・標高点・測定点のいずれかの値で、種別（point_type）で区別できます
+  - 都道府県をまたぐ山は、都道府県を空白区切りで並べた1行です。県ごとには分かれていません
+keywords:
+  - 山岳
+  - 標高
+  - 山頂
+  - 三角点
+  - GIS
+  - 国土地理院
+annotations: { queria: { themes: [land_climate] } }
+sources:
+  - path: https://www.gsi.go.jp/kihonjohochousa/kihonjohochousa41139.html
+fields:
+  - name: mountain_id
+    title: 連番
+    description: 配布データの連番
+  - name: index_number
+    title: 索引番号
+    description: 配布データの索引番号。同じ山に山頂が複数あるときは 14-1・14-2 のように枝番が付く
+  - name: mountain_index
+    title: 山の通し番号
+    description: index_number から枝番を除いた番号。1つの山を数えるときの単位で、1003 通りある
+  - name: mountain_name
+    title: 山名
+  - name: peak_name
+    title: 山頂名
+    description: 山名に添えられた山頂名（例 富士山の剣ヶ峯、大雪山の旭岳）。付いていない行は NULL
+  - name: mountain_name_kana
+    title: 山名よみ
+  - name: peak_name_kana
+    title: 山頂名よみ
+  - name: elevation_m
+    title: 標高（m）
+    description: 山頂の標高。メートル単位の整数
+  - name: point_type
+    title: 種別
+    description: 標高の出どころ。三角点・標高点・測定点
+  - name: prefectures
+    title: 都道府県
+    description: 山頂のある都道府県。複数にまたがるときは空白区切り（例 山梨県 静岡県）
+  - name: prefecture_names
+    title: 都道府県（リスト）
+    description: prefectures を空白で分けたリスト。list_contains で都道府県を絞れる
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
+  - name: geometry
+    title: 山頂ポイント
+    description: 経度・緯度から生成したポイント

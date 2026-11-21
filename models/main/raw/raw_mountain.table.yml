@@ -1,0 +1,25 @@
+schema: main
+name: raw_mountain
+description: 国土地理院「日本の主な山岳標高」の CSV。
+annotations: { queria: { published: false } }
+sources:
+  - path: https://www.gsi.go.jp/kihonjohochousa/kihonjohochousa41139.html
+fields:
+  - name: serial_number
+    title: 連番
+  - name: index_number
+    title: 索引番号
+  - name: mountain_label
+    title: 山名＜山頂名＞
+  - name: mountain_label_kana
+    title: 山名よみ＜山頂名よみ＞
+  - name: elevation_m
+    title: 標高値(m)
+  - name: point_type
+    title: 種別
+  - name: prefectures
+    title: 都道府県
+  - name: latitude
+    title: 緯度
+  - name: longitude
+    title: 経度
