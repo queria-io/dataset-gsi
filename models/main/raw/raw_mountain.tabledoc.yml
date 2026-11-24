@@ -1,10 +1,9 @@
-schema: main
-name: raw_mountain
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 description: 国土地理院「日本の主な山岳標高」の CSV。
-annotations: { queria: { published: false } }
+hidden: true
 sources:
-  - path: https://www.gsi.go.jp/kihonjohochousa/kihonjohochousa41139.html
-fields:
+  - kihonjohochousa41139
+columns:
   - name: serial_number
     title: 連番
   - name: index_number

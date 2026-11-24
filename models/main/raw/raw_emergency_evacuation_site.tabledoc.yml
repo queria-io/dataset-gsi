@@ -1,10 +1,9 @@
-schema: main
-name: raw_emergency_evacuation_site
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 description: 国土地理院「指定緊急避難場所データ」の全国統合 CSV (mergeFromCity_2.csv)。災害種別列は指定あり=1、指定なし=空。
-annotations: { queria: { published: false } }
+hidden: true
 sources:
-  - path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
-fields:
+  - hinanbasho
+columns:
   - name: "no"
     title: 連番
   - name: site_id

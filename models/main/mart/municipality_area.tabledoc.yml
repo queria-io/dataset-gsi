@@ -1,28 +1,26 @@
-schema: main
-name: municipality_area
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 title: 全国都道府県市区町村別面積
 description: |-
   全国・都道府県・郡・市区町村・政令市の区の面積（k㎡）を、2014 年 10 月 1 日時点から時点ごとに持ちます。1 行が 1 地域 × 1 時点です。
 
   - 政令市とその区、都道府県とその内訳は別の行です。合計するときは area_type で絞ってください
   - 境界未定部を持つ地域の面積は概算で、is_reference_value が TRUE です
-keywords:
+topics:
   - 面積
   - 市区町村
   - 都道府県
   - 人口密度
   - 国土地理院
-annotations: { queria: { themes: [land_climate] } }
 sources:
-  - path: https://www.gsi.go.jp/KOKUJYOHO/OLD-MENCHO-title.htm
-fields:
+  - OLD-MENCHO-title
+columns:
   - name: survey_date
     title: 時点
     description: 面積を測った時点（1月1日・4月1日・7月1日・10月1日のいずれか）
   - name: area_code
     title: 標準地域コード
     description: 5桁の標準地域コード。全国・都道府県の内訳・市区町村外の行は NULL
-    annotations: { queria: { semantic: { role: entity, name: city } } }
+    entity: city
   - name: area_type
     title: 地域の種別
     description: 地域の種別（全国／都道府県／都道府県の内訳／郡・支庁等／市区町村／政令市の区／市区町村外）

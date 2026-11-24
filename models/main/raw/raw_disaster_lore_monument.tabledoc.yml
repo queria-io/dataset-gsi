@@ -1,10 +1,9 @@
-schema: main
-name: raw_disaster_lore_monument
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 description: 国土地理院「自然災害伝承碑データ」の全国 CSV。
-annotations: { queria: { published: false } }
+hidden: true
 sources:
-  - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
-fields:
+  - denshouhi_datainfo
+columns:
   - name: monument_id
     title: ID
   - name: monument_name

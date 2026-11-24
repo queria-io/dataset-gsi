@@ -1,22 +1,20 @@
-schema: main
-name: mountain
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 title: 日本の主な山岳標高
 description: |-
   日本の主な山岳の山頂の位置と標高です。1行が1つの山頂で、同じ山に山頂が複数あるときは山頂ごとに行があります。山の数は mountain_index の種類数（1003）で数えます。
 
   - 標高は三角点・標高点・測定点のいずれかの値で、種別（point_type）で区別できます
   - 都道府県をまたぐ山は、都道府県を空白区切りで並べた1行です。県ごとには分かれていません
-keywords:
+topics:
   - 山岳
   - 標高
   - 山頂
   - 三角点
   - GIS
   - 国土地理院
-annotations: { queria: { themes: [land_climate] } }
 sources:
-  - path: https://www.gsi.go.jp/kihonjohochousa/kihonjohochousa41139.html
-fields:
+  - kihonjohochousa41139
+columns:
   - name: mountain_id
     title: 連番
     description: 配布データの連番
