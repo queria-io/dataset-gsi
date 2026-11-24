@@ -1,29 +1,27 @@
-schema: main
-name: disaster_lore_monument
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 title: 自然災害伝承碑
 description: |-
   全国の自然災害伝承碑の位置と、碑が伝える災害・伝承内容です。
 
   - 掲載は市区町村の申請によるため、碑が無い市区町村と申請していない市区町村は区別できません
   - 同じ災害でも碑ごとに災害名の表記が違うことがあります
-keywords:
+topics:
   - 防災
   - 自然災害伝承碑
   - 災害史
   - 石碑
   - GIS
   - 国土地理院
-annotations: { queria: { themes: [justice_safety_environment] } }
 sources:
-  - path: https://www.gsi.go.jp/bousaichiri/denshouhi_datainfo.html
-fields:
+  - denshouhi_datainfo
+columns:
   - name: monument_id
     title: ID
     description: 伝承碑の ID（例 01202-001）。先頭 5 桁は申請した市区町村のコード
   - name: municipality_code
     title: 市区町村コード
     description: 掲載を申請した市区町村のコード（5 桁）。所在地の市区町村と違うことがある
-    annotations: { queria: { semantic: { role: entity, name: city } } }
+    entity: city
   - name: monument_name
     title: 碑名
   - name: erected_year_label

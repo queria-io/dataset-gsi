@@ -1,21 +1,19 @@
-schema: main
-name: designated_shelter
+$schema: https://tabledoc.queria.io/schemas/table/v1.json
 title: 指定避難所
 description: |-
   全国の指定避難所（災害対策基本法第49条の7）の位置と受入対象者です。
 
   - 緯度・経度が欠損する行は除いています
   - site_id の 2〜6 文字目が市区町村コード（5 桁）です
-keywords:
+topics:
   - 防災
   - 避難場所
   - 避難所
   - GIS
   - 国土地理院
-annotations: { queria: { themes: [justice_safety_environment] } }
 sources:
-  - path: https://www.gsi.go.jp/bousaichiri/hinanbasho.html
-fields:
+  - hinanbasho
+columns:
   - name: site_id
     title: 共通ID
     description: 市区町村コードを含む指定避難所の共通ID

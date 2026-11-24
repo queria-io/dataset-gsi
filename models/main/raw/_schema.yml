@@ -2,16 +2,11 @@ version: 2
 
 models:
   - name: raw_emergency_evacuation_site
-    description: 国土地理院「指定緊急避難場所データ」の全国統合 CSV (mergeFromCity_2.csv)。災害種別列は指定あり=1、指定なし=空。
 
   - name: raw_designated_shelter
-    description: 国土地理院「指定避難所データ」の全国統合 CSV (mergeFromCity_1.csv)。
 
   - name: raw_municipality_area
-    description: 国土地理院「全国都道府県市区町村別面積調」の CSV 3ファイル（R8_04_mencho.csv / R1_R5_mencho.csv / H26_H30_mencho.csv）を縦持ちにしたもの。面積が「-」の行はその時点に存在しなかった地域。
 
   - name: raw_disaster_lore_monument
-    description: 国土地理院「自然災害伝承碑データ」の全国 CSV。日付は「2019/9/1」形式の文字列で、修正等公開日は「、」区切りで複数入ることがある。
 
   - name: raw_mountain
-    description: 国土地理院「日本の主な山岳標高」の CSV。山名・山名よみは「山名＜山頂名＞」の形で、山頂名は付く行と付かない行がある。
